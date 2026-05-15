@@ -57,3 +57,26 @@ class Submission(models.Model):
 
     def __str__ (self):
         return f"Submission {self.id} - {self.polling_unit.code}"
+    
+# SubmissionResult Model
+class SubmissionResult(models.Model):
+    submission = models.ForeignKey(
+        Submission,
+        on_delete=models.CASCADE,
+        related_name="results"
+    )
+
+    party = models.ForeignKey(
+        Party,
+        on_delete=models.CASCADE,
+        related_name="submission_results",
+    )
+
+    vote_count = models.PositiveIntegerField()
+
+    class Meta:
+        unique_together = ("submission", "party")
+
+    def __str__ (self):
+        return f"{self.submission} - {self.party.acronym}: {self.vote_count}"
+
