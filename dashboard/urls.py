@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import home 
+from .views import home, submit_result
 
 urlpatterns = [
-    path("", home, name="home")
-]
+    path("", home, name="home"),
+    path("submit/", submit_result, name="submit_result"),
+] 

@@ -44,6 +44,8 @@ class Submission(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="submissions",
+        blank=True,
+        null=True
     )
 
     image = models.ImageField(upload_to="result_sheets/")
